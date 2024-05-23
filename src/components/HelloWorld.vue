@@ -1,3 +1,15 @@
+<template>
+  <div class="hello">
+    <div class="greetings">
+      <h1>{{ msg }}</h1>
+      <h3>
+        <!-- Bagian ini bisa diisi dengan konten tambahan atau slot jika diperlukan -->
+        <slot></slot>
+      </h3>
+    </div>
+  </div>
+</template>
+
 <script setup>
 defineProps({
   msg: {
@@ -7,20 +19,12 @@ defineProps({
 })
 </script>
 
-<template>
-  <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
-    <h3>
-   
-    </h3>
-  </div>
-</template>
-
 <style scoped>
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
   top: -10px;
+  color: #42b983;
 }
 
 h3 {
