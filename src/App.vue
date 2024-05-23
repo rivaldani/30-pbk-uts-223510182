@@ -84,7 +84,7 @@ const submitPost = async () => {
       },
       body: JSON.stringify({
         ...newPost.value,
-        userId: selectedUser.value // Menambahkan userId ke dalam data post
+        userId: selectedUser.value 
       })
     })
 
