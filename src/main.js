@@ -1,7 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router/index';
-import './assets';
 import { createPinia } from 'pinia';
 import { Quasar } from 'quasar'; // Mengimpor Quasar dari paket yang benar
 
