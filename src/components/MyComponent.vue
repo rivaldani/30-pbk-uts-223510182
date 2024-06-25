@@ -39,7 +39,7 @@
   
   <style scoped>
   .todo-container {
-    background-image: url('@/assets/images/mbl.jpg'); /* Mengatur gambar latar belakang */
+    background-image: url('@/assets/mbl.jpg'); /* Mengatur gambar latar belakang */
     background-size: cover;  /* Menyesuaikan gambar agar menutupi seluruh kontainer */
     background-position: center;  /* Memusatkan gambar */
     background-repeat: no-repeat;  /* Tidak mengulang gambar */
