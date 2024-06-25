@@ -2,7 +2,7 @@
 <template>
   <div id="app">
     <header>
-      <img alt="Vue logo" class="logo" src="src/assets/pembalap.jpeg" width="125" height="125" />
+      <img alt="Vue logo" class="logo" src="./assets/pembalap.jpeg" width="125" height="125" />
       <div class="wrapper">
         <HelloWorld msg="ToDolist Mobil Impian" />
         <nav>
@@ -51,6 +51,7 @@ import { ref } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from './components/HelloWorld.vue';
 import PostList from './components/PostList.vue';
+
 
 
 // State
@@ -114,7 +115,7 @@ const displayDetail = (post) => {
 
 <style scoped>
 #app {
-  background-image: url('src/assets/mbl.jpg');
+  background-image: url('./assets/mbl.jpg');
   background-size: cover;
   background-position: center;
   min-height: 100vh;
