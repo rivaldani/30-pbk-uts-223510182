@@ -1,11 +1,22 @@
-import './assets/main.css'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router/index';
+import { createPinia } from 'pinia';
+import { Quasar } from 'quasar'; // Mengimpor Quasar dari paket yang benar
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import '@quasar/extras/material-icons/material-icons.css';
+import 'quasar/src/css/index.sass';
 
-const app = createApp(App)
+const pinia = createPinia();
 
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+// Gunakan Quasar di dalam aplikasi Vue
+app.use(Quasar, {
+  plugins: {}, // Tambahkan plugin Quasar yang diperlukan di sini
+});
+
+app.use(pinia);
+app.use(router);
+
+app.mount('#app');

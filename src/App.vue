@@ -1,12 +1,14 @@
+<!-- App.vue -->
 <template>
   <div id="app">
     <header>
-      <img alt="Vue logo" class="logo" src="@/assets/pembalap.jpeg" width="125" height="125" />
+      <img alt="Vue logo" class="logo" src="src/assets/pembalap.jpeg" width="125" height="125" />
       <div class="wrapper">
         <HelloWorld msg="ToDolist Mobil Impian" />
         <nav>
           <RouterLink to="/">Todolist</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
+          <RouterLink to="/posts">Posts</RouterLink>
+          <RouterLink to="/albums">Albums</RouterLink>
           <button @click="showPostForm = true">Post</button>
           <select v-model="selectedUser">
             <option disabled value="">Select a user</option>
@@ -39,40 +41,43 @@
       <h3>{{ selectedPost.title }}</h3>
       <p>{{ selectedPost.body }}</p>
     </div>
+
+    <TodoList />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
-import PostList from './components/PostList.vue'
+import { ref } from 'vue';
+import { RouterLink, RouterView } from 'vue-router';
+import HelloWorld from './components/HelloWorld.vue';
+import PostList from './components/PostList.vue';
+
 
 // State
-const showPostForm = ref(false)
+const showPostForm = ref(false);
 const newPost = ref({
   title: '',
   body: ''
-})
-const selectedUser = ref('')
-const users = ref([])
-const selectedPost = ref(null)
+});
+const selectedUser = ref('');
+const users = ref([]);
+const selectedPost = ref(null);
 
 // Fetch users from JSONPlaceholder
 const fetchUsers = async () => {
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users')
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
     if (response.ok) {
-      const data = await response.json()
-      users.value = data
+      const data = await response.json();
+      users.value = data;
     } else {
-      console.error('Failed to fetch users')
+      console.error('Failed to fetch users');
     }
   } catch (error) {
-    console.error('Error fetching users:', error)
+    console.error('Error fetching users:', error);
   }
-}
-fetchUsers()
+};
+fetchUsers();
 
 // Submit post
 const submitPost = async () => {
@@ -84,30 +89,37 @@ const submitPost = async () => {
       },
       body: JSON.stringify({
         ...newPost.value,
-        userId: selectedUser.value 
+        userId: selectedUser.value
       })
-    })
+    });
 
     if (response.ok) {
-      console.log('Post submitted successfully')
-      newPost.value.title = ''
-      newPost.value.body = ''
-      selectedUser.value = ''
-      showPostForm.value = false
+      console.log('Post submitted successfully');
+      newPost.value.title = '';
+      newPost.value.body = '';
+      selectedUser.value = '';
+      showPostForm.value = false;
     } else {
-      console.error('Failed to submit post')
+      console.error('Failed to submit post');
     }
   } catch (error) {
-    console.error('Error submitting post:', error)
+    console.error('Error submitting post:', error);
   }
-}
+};
 
 const displayDetail = (post) => {
-  selectedPost.value = post
-}
+  selectedPost.value = post;
+};
 </script>
 
 <style scoped>
+#app {
+  background-image: url('src/assets/mbl.jpeg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;

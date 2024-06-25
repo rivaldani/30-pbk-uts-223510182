@@ -1,45 +1,53 @@
+
 <template>
-  <div class="hello">
-    <div class="greetings">
-      <h1>{{ msg }}</h1>
-      <h3>
-        <!-- Bagian ini bisa diisi dengan konten tambahan atau slot jika diperlukan -->
-        <slot></slot>
-      </h3>
-    </div>
+  <div>
+    <h2>Todo List</h2>
+    <ul>
+      <li v-for="todo in todos" :key="todo.id">
+        <input type="checkbox" v-model="todo.completed"> {{ todo.text }}
+        <button @click="deleteTodo(todo.id)">Delete</button>
+      </li>
+    </ul>
+    <form @submit.prevent="addTodo">
+      <input type="text" v-model="newTodoText" placeholder="Add new todo...">
+      <button type="submit">Add Todo</button>
+    </form>
   </div>
 </template>
 
 <script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
+import { ref } from 'vue';
+
+const todos = ref([
+  { id: 1, text: 'Learn Vue.js', completed: false },
+  { id: 2, text: 'Build an awesome app', completed: true }
+]);
+const newTodoText = ref('');
+
+const addTodo = () => {
+  if (newTodoText.value.trim() === '') return;
+  todos.value.push({
+    id: todos.value.length + 1,
+    text: newTodoText.value,
+    completed: false
+  });
+  newTodoText.value = '';
+};
+
+const deleteTodo = (id) => {
+  const index = todos.value.findIndex(todo => todo.id === id);
+  if (index !== -1) {
+    todos.value.splice(index, 1);
   }
-})
+};
 </script>
 
 <style scoped>
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  top: -10px;
-  color: #42b983;
+ul {
+  list-style-type: none;
+  padding: 0;
 }
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
-
-@media (min-width: 1024px) {
-  .greetings h1,
-  .greetings h3 {
-    text-align: left;
-  }
+li {
+  margin-bottom: 0.5rem;
 }
 </style>
